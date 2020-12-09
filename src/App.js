@@ -1,6 +1,5 @@
 import React from "react";
-import List from "./components/List/List";
-import AddContact from "./components/AddContact/AddContact";
+import List from "./components/List";
 
 function App() {
   let lists = [
@@ -8,54 +7,54 @@ function App() {
       name: "Иван",
       surname: "Иванов",
       patronymic: "Иванович",
-      email: "ivan@mal.com",
+      email: "ivan@mccccal.com",
       password: "ivan",
-      phone: "88000000000",
+      phone: "8947382903",
       status: "admin",
     },
     {
       name: "Петр",
       surname: "Петров",
       patronymic: "Петрович",
-      email: "petr@mal.com",
+      email: "petr@msdssal.com",
       password: "petr",
-      phone: "88000000000",
+      phone: "874932992734",
       status: "client",
     },
     {
       name: "Александр",
       surname: "Александров",
       patronymic: "Александрич",
-      email: "alex@mal.com",
+      email: "alex@madwawl.com",
       password: "alex",
-      phone: "88000000000",
+      phone: "88757847733",
       status: "partner",
     },
     {
       name: "Алексей",
       surname: "Алексеев",
       patronymic: "Алексеевич",
-      email: "petr@mal.com",
+      email: "petr@wadmal.com",
       password: "alex",
-      phone: "88000000000",
+      phone: "8665647733",
       status: "client",
     },
     {
       name: "Сергей",
       surname: "Сергеев",
       patronymic: "Сергеевич",
-      email: "petr@mal.com",
+      email: "petr@msal.com",
       password: "",
-      phone: "88000000000",
+      phone: "899878585722",
       status: "partner",
     },
     {
       name: "Мария",
       surname: "Иванова",
       patronymic: "Ивановна",
-      email: "petr@mal.com",
+      email: "petr@aamal.com",
       password: "",
-      phone: "88000000000",
+      phone: "8i985968332",
       status: "client",
     },
   ];
@@ -82,12 +81,7 @@ function App() {
 
   return (
     <div className="App">
-      {contacts ? (
-        <AddContact overLoad={overLoad} contacts={contacts} />
-      ) : (
-        "...Loading"
-      )}
-      {/* {contacts ? <List overLoad={overLoad} list={contacts} /> : "...Loading"} */}
+      {contacts ? <List overLoad={overLoad} list={contacts} /> : "...Loading"}
     </div>
   );
 }

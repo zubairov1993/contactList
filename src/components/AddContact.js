@@ -16,7 +16,6 @@ import ClearOutlinedIcon from "@material-ui/icons/ClearOutlined";
 import PersonAddIcon from "@material-ui/icons/PersonAdd";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
-import Search from "../Search/Search";
 
 function AddContact({ contacts, overLoad }) {
   const [list, setList] = React.useState("");
@@ -41,16 +40,6 @@ function AddContact({ contacts, overLoad }) {
       backgroundColor: "#ffffff",
       borderRadius: 4,
     },
-    contact: {
-      position: "relative",
-      paddingTop: 50,
-      borderTop: "1px solid #cccccc",
-    },
-    btn__add: {
-      position: "absolute",
-      right: 20,
-      bottom: 7,
-    },
     btn__close: {
       width: 15,
       height: 15,
@@ -71,8 +60,8 @@ function AddContact({ contacts, overLoad }) {
       backgroundColor: "#fff",
       zIndex: 99,
       borderRadius: 5,
-      right: 180,
-      top: 7,
+      right: 160,
+      top: 25,
       border: "1px solid #ccc",
     },
     select: {
@@ -120,8 +109,6 @@ function AddContact({ contacts, overLoad }) {
 
   return (
     <div className={classes.contact}>
-      <Search />
-
       <Button
         onClick={() => setVisiblePopup(!visiblePopup)}
         variant="contained"
