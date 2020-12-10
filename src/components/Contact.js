@@ -34,7 +34,7 @@ const Contact = ({ items }) => {
     setPhone,
     setStatus,
     onChanged,
-    onRemove,
+    removeContact,
   } = items;
   const classes = useStyles();
   return (
@@ -69,12 +69,6 @@ const Contact = ({ items }) => {
           defaultValue={contact.phone}
         />
       </TableCell>
-      <TableCell align="left">
-        <InputBase
-          onChange={(e) => setStatus(e.target.value)}
-          defaultValue={contact.status}
-        />
-      </TableCell>
 
       <TableCell className={classes.btn__icon}>
         <IconButton
@@ -87,7 +81,7 @@ const Contact = ({ items }) => {
       <TableCell className={classes.btn__icon} align="center">
         <IconButton
           className={classes.btn__icon}
-          onClick={() => onRemove(contact)}
+          onClick={() => removeContact(contact)}
         >
           <DeleteIcon className={classes.icon} />
         </IconButton>

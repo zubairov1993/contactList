@@ -1,4 +1,6 @@
 import React from "react";
+import axios from "axios";
+
 import {
   Button,
   InputLabel,
@@ -17,28 +19,24 @@ import PersonAddIcon from "@material-ui/icons/PersonAdd";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 
-function AddContact({ contacts, overLoad }) {
-  const [list, setList] = React.useState("");
+function AddContact({ items }) {
+  const { lists, setLists } = items;
+  console.log(lists);
   const [visiblePopup, setVisiblePopup] = React.useState(false);
   const [valueSurName, setValueSurName] = React.useState("");
   const [valueName, setValueName] = React.useState("");
   const [valuePatronymic, setValuePatronymic] = React.useState("");
   const [valueEmail, setValueEmail] = React.useState("");
   const [valuePhone, setValuePhone] = React.useState("");
-  const [valueStatus, setValueStatus] = React.useState("");
-  const [values, setValues] = React.useState({
-    amount: "",
-    password: "",
-    weight: "",
-    weightRange: "",
-    showPassword: false,
-  });
 
   const useStyles = makeStyles((theme) => ({
     margin: {
       margin: theme.spacing(0.5),
       backgroundColor: "#ffffff",
       borderRadius: 4,
+    },
+    btn__add: {
+      margin: 20,
     },
     btn__close: {
       width: 15,
@@ -69,38 +67,27 @@ function AddContact({ contacts, overLoad }) {
     },
   }));
 
-  const handleChange = (prop) => (event) => {
-    setValues({ ...values, [prop]: event.target.value });
+  //// Добавление
+  const onAddList = (obj) => {
+    const newList = [...lists, obj];
+    setLists(newList);
   };
 
-  const handleClickShowPassword = () => {
-    setValues({ ...values, showPassword: !values.showPassword });
-  };
-
-  const handleMouseDownPassword = (event) => {
-    event.preventDefault();
-  };
-
-  React.useEffect(() => {
-    setList(contacts);
-  });
   const addList = () => {
-    const contacts = {
-      name: valueName,
-      surname: valueSurName,
-      patronymic: valuePatronymic,
-      email: valueEmail,
-      password: values.password,
-      phone: valuePhone,
-      status: valueStatus,
-    };
-
-    const newList = [...list, contacts];
-    localStorage.setItem("persons", JSON.stringify(newList));
-
-    setVisiblePopup(false);
-    overLoad();
+    axios
+      .post("http://localhost:3001/lists", {
+        name: valueName,
+        surname: valueSurName,
+        patronymic: valuePatronymic,
+        email: valueEmail,
+        phone: valuePhone,
+      })
+      .then(({ data }) => {
+        onAddList(data);
+        onClose();
+      });
   };
+  //// Добавление
 
   const onClose = () => {
     setVisiblePopup(false);
@@ -156,34 +143,7 @@ function AddContact({ contacts, overLoad }) {
               onChange={(e) => setValueEmail(e.target.value)}
             />
           </FormControl>
-          <FormControl
-            size="small"
-            className={classes.margin}
-            variant="outlined"
-          >
-            <InputLabel htmlFor="outlined-adornment-password">
-              Password
-            </InputLabel>
-            <OutlinedInput
-              id="outlined-adornment-password"
-              type={values.showPassword ? "text" : "password"}
-              value={values.password}
-              onChange={handleChange("password")}
-              endAdornment={
-                <InputAdornment position="end">
-                  <IconButton
-                    aria-label="toggle password visibility"
-                    onClick={handleClickShowPassword}
-                    onMouseDown={handleMouseDownPassword}
-                    edge="end"
-                  >
-                    {values.showPassword ? <Visibility /> : <VisibilityOff />}
-                  </IconButton>
-                </InputAdornment>
-              }
-              labelWidth={70}
-            />
-          </FormControl>
+
           <FormControl className={classes.margin}>
             <TextField
               label="Введите номер телефона"
@@ -192,29 +152,6 @@ function AddContact({ contacts, overLoad }) {
               size="small"
               onChange={(e) => setValuePhone(e.target.value)}
             />
-          </FormControl>
-          <FormControl
-            size="small"
-            variant="outlined"
-            className={classes.margin}
-          >
-            <InputLabel id="demo-simple-select-outlined-label">
-              Выберите статус
-            </InputLabel>
-            <Select
-              className={classes.select}
-              labelId="demo-simple-select-outlined-label"
-              id="demo-simple-select-outlined"
-              onChange={(e) => setValueStatus(e.target.value)}
-              label="Выберите статус"
-            >
-              <MenuItem value="">
-                <em>None</em>
-              </MenuItem>
-              <MenuItem value={"admin"}>Admin</MenuItem>
-              <MenuItem value={"client"}>Client</MenuItem>
-              <MenuItem value={"partner"}>Partner</MenuItem>
-            </Select>
           </FormControl>
           <IconButton
             onClick={onClose}

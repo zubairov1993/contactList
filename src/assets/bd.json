@@ -1,0 +1,64 @@
+{
+  "lists": [
+    {
+      "id": 1,
+      "name": "Иван",
+      "surname": "Иванов",
+      "patronymic": "Иванович",
+      "email": "ivan@mccccal.com",
+      "password": "ivan",
+      "phone": "8947382903",
+      "status": "admin"
+    },
+    {
+      "id": 2,
+      "name": "Петр",
+      "surname": "Петров",
+      "patronymic": "Петрович",
+      "email": "petr@msdssal.com",
+      "password": "petr",
+      "phone": "874932992734",
+      "status": "client"
+    },
+    {
+      "id": 3,
+      "name": "Александр",
+      "surname": "Александров",
+      "patronymic": "Александрич",
+      "email": "alex@madwawl.com",
+      "password": "alex",
+      "phone": "88757847733",
+      "status": "partner"
+    },
+    {
+      "id": 4,
+      "name": "Алексей",
+      "surname": "Алексеев",
+      "patronymic": "Алексеевич",
+      "email": "petr@wadmal.com",
+      "password": "alex",
+      "phone": "8665647733",
+      "status": "client"
+    },
+    {
+      "id": 5,
+      "name": "Сергей",
+      "surname": "Сергеев",
+      "patronymic": "Сергеевич",
+      "email": "petr@msal.com",
+      "password": "",
+      "phone": "899878585722",
+      "status": "partner"
+    },
+    {
+      "id": 6,
+      "name": "Мария",
+      "surname": "Иванова",
+      "patronymic": "Ивановна",
+      "email": "petr@aamal.com",
+      "password": "",
+      "phone": "8i985968332",
+      "status": "client"
+    }
+  ]
+}
