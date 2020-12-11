@@ -3,25 +3,17 @@ import axios from "axios";
 
 import {
   Button,
-  InputLabel,
-  MenuItem,
   FormControl,
-  Select,
   TextField,
   IconButton,
-  OutlinedInput,
-  InputAdornment,
   makeStyles,
 } from "@material-ui/core";
 
 import ClearOutlinedIcon from "@material-ui/icons/ClearOutlined";
 import PersonAddIcon from "@material-ui/icons/PersonAdd";
-import Visibility from "@material-ui/icons/Visibility";
-import VisibilityOff from "@material-ui/icons/VisibilityOff";
 
 function AddContact({ items }) {
   const { lists, setLists } = items;
-  console.log(lists);
   const [visiblePopup, setVisiblePopup] = React.useState(false);
   const [valueSurName, setValueSurName] = React.useState("");
   const [valueName, setValueName] = React.useState("");
