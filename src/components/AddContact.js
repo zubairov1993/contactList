@@ -1,5 +1,4 @@
 import React from "react";
-import axios from "axios";
 
 import {
   Button,
@@ -13,13 +12,17 @@ import ClearOutlinedIcon from "@material-ui/icons/ClearOutlined";
 import PersonAddIcon from "@material-ui/icons/PersonAdd";
 
 function AddContact({ items }) {
-  const { lists, setLists } = items;
-  const [visiblePopup, setVisiblePopup] = React.useState(false);
-  const [valueSurName, setValueSurName] = React.useState("");
-  const [valueName, setValueName] = React.useState("");
-  const [valuePatronymic, setValuePatronymic] = React.useState("");
-  const [valueEmail, setValueEmail] = React.useState("");
-  const [valuePhone, setValuePhone] = React.useState("");
+  const {
+    setValueSurName,
+    setValueName,
+    setValuePatronymic,
+    setValueEmail,
+    setValuePhone,
+    visiblePopup,
+    setVisiblePopup,
+    addList,
+    onClose,
+  } = items;
 
   const useStyles = makeStyles((theme) => ({
     margin: {
@@ -28,7 +31,8 @@ function AddContact({ items }) {
       borderRadius: 4,
     },
     btn__add: {
-      margin: 20,
+      height: 40,
+      margin: 10,
     },
     btn__close: {
       width: 15,
@@ -43,15 +47,18 @@ function AddContact({ items }) {
         color: "#ffffff",
       },
     },
-    popup: {
+    contact: {
+      position: "relative",
+    },
+    popupAdd: {
       display: "inline-flex",
       flexDirection: "column",
       position: "absolute",
       backgroundColor: "#fff",
       zIndex: 99,
       borderRadius: 5,
-      right: 160,
-      top: 25,
+      left: -235,
+      top: 50,
       border: "1px solid #ccc",
     },
     select: {
@@ -59,31 +66,6 @@ function AddContact({ items }) {
     },
   }));
 
-  //// Добавление
-  const onAddList = (obj) => {
-    const newList = [...lists, obj];
-    setLists(newList);
-  };
-
-  const addList = () => {
-    axios
-      .post("http://localhost:3001/lists", {
-        name: valueName,
-        surname: valueSurName,
-        patronymic: valuePatronymic,
-        email: valueEmail,
-        phone: valuePhone,
-      })
-      .then(({ data }) => {
-        onAddList(data);
-        onClose();
-      });
-  };
-  //// Добавление
-
-  const onClose = () => {
-    setVisiblePopup(false);
-  };
   const classes = useStyles();
 
   return (
@@ -98,7 +80,7 @@ function AddContact({ items }) {
         Добавить
       </Button>
       {visiblePopup && (
-        <div className={classes.popup}>
+        <div className={classes.popupAdd}>
           <FormControl className={classes.margin}>
             <TextField
               label="Введите Фамилию"
@@ -135,7 +117,6 @@ function AddContact({ items }) {
               onChange={(e) => setValueEmail(e.target.value)}
             />
           </FormControl>
-
           <FormControl className={classes.margin}>
             <TextField
               label="Введите номер телефона"
@@ -152,12 +133,7 @@ function AddContact({ items }) {
           >
             <ClearOutlinedIcon />
           </IconButton>
-          <Button
-            onClick={addList}
-            variant="contained"
-            color="primary"
-            // className={classes.btn__add_contact}
-          >
+          <Button onClick={addList} variant="contained" color="primary">
             Добавить контакт
           </Button>
         </div>
