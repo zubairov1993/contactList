@@ -42,6 +42,10 @@ function AddContact({ items }) {
       right: -10,
       top: -10,
 
+      "&:hover": {
+        backgroundColor: "#3f51b5",
+      },
+
       "& svg": {
         fontSize: 15,
         color: "#ffffff",
@@ -83,7 +87,7 @@ function AddContact({ items }) {
         <div className={classes.popupAdd}>
           <FormControl className={classes.margin}>
             <TextField
-              label="Введите Имя"
+              label="Имя"
               id="outlined-size-small"
               variant="outlined"
               size="small"
@@ -92,7 +96,7 @@ function AddContact({ items }) {
           </FormControl>
           <FormControl className={classes.margin}>
             <TextField
-              label="Введите Email"
+              label="Email"
               id="outlined-size-small"
               variant="outlined"
               size="small"
@@ -101,7 +105,7 @@ function AddContact({ items }) {
           </FormControl>
           <FormControl className={classes.margin}>
             <TextField
-              label="Введите номер телефона"
+              label="Телефон"
               id="outlined-size-small"
               variant="outlined"
               size="small"
@@ -110,7 +114,7 @@ function AddContact({ items }) {
           </FormControl>
           <FormControl className={classes.margin}>
             <TextField
-              label="Введите Фамилию"
+              label="Город"
               id="outlined-size-small"
               variant="outlined"
               size="small"
@@ -119,7 +123,7 @@ function AddContact({ items }) {
           </FormControl>
           <FormControl className={classes.margin}>
             <TextField
-              label="Введите отчество"
+              label="Компания"
               id="outlined-size-small"
               variant="outlined"
               size="small"
