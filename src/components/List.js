@@ -45,11 +45,11 @@ const useStyles = makeStyles({
 
 function List({ items }) {
   const { lists, setLists } = items;
-  const [valueSurName, setValueSurName] = React.useState("");
   const [valueName, setValueName] = React.useState("");
-  const [valuePatronymic, setValuePatronymic] = React.useState("");
   const [valueEmail, setValueEmail] = React.useState("");
   const [valuePhone, setValuePhone] = React.useState("");
+  const [valueCity, setValueCity] = React.useState("");
+  const [valueCompany, setValueCompany] = React.useState("");
   const [search, setSearch] = React.useState("");
   const [visiblePopup, setVisiblePopup] = React.useState(false);
 
@@ -65,12 +65,16 @@ function List({ items }) {
   // Добавление контакта
   const addList = () => {
     axios
-      .post("http://localhost:3001/lists", {
+      .post("http://jsonplaceholder.typicode.com/users", {
         name: valueName,
-        surname: valueSurName,
-        patronymic: valuePatronymic,
         email: valueEmail,
         phone: valuePhone,
+        address: {
+          city: valueCity,
+        },
+        company: {
+          name: valueCompany,
+        },
       })
       .then(({ data }) => {
         const newList = [...lists, data];
@@ -83,10 +87,12 @@ function List({ items }) {
   // Удаление контакта
   const removeContact = (contact) => {
     if (window.confirm("Вы точно хотите удалить?")) {
-      axios.delete("http://localhost:3001/lists/" + contact.id).then(() => {
-        const newList = lists.filter((item) => item.id !== contact.id);
-        setLists(newList);
-      });
+      axios
+        .delete("http://jsonplaceholder.typicode.com/users/" + contact.id)
+        .then(() => {
+          const newList = lists.filter((item) => item.id !== contact.id);
+          setLists(newList);
+        });
     }
   };
   // Удаление контакта
@@ -95,14 +101,8 @@ function List({ items }) {
   const onChanged = (id, value) => {
     const newList = lists.map((item) => {
       if (item.id === id) {
-        if (item.surname === value) {
-          item.surname = window.prompt("Внесите изменения", value);
-        }
         if (item.name === value) {
           item.name = window.prompt("Внесите изменения", value);
-        }
-        if (item.patronymic === value) {
-          item.patronymic = window.prompt("Внесите изменения", value);
         }
         if (item.email === value) {
           item.email = window.prompt("Внесите изменения", value);
@@ -110,7 +110,13 @@ function List({ items }) {
         if (item.phone === value) {
           item.phone = window.prompt("Внесите изменения", value);
         }
-        axios.patch("http://localhost:3001/lists/" + id, item);
+        if (item.address.city === value) {
+          item.address.city = window.prompt("Внесите изменения", value);
+        }
+        if (item.company.name === value) {
+          item.company.name = window.prompt("Внесите изменения", value);
+        }
+        axios.patch("http://jsonplaceholder.typicode.com/users/" + id, item);
       }
       return item;
     });
@@ -142,11 +148,11 @@ function List({ items }) {
         </FormControl>
         <AddContact
           items={{
-            setValueSurName,
             setValueName,
-            setValuePatronymic,
             setValueEmail,
             setValuePhone,
+            setValueCity,
+            setValueCompany,
             visiblePopup,
             setVisiblePopup,
             addList,
@@ -160,19 +166,19 @@ function List({ items }) {
             <TableRow>
               <TableCell></TableCell>
               <TableCell>
-                <b>Фамилия</b>
-              </TableCell>
-              <TableCell>
                 <b>Имя</b>
-              </TableCell>
-              <TableCell>
-                <b>Отчество</b>
               </TableCell>
               <TableCell>
                 <b>Электроный адрес</b>
               </TableCell>
               <TableCell>
                 <b>Телефон</b>
+              </TableCell>
+              <TableCell>
+                <b>Город</b>
+              </TableCell>
+              <TableCell>
+                <b>Компания</b>
               </TableCell>
               <TableCell></TableCell>
               <TableCell></TableCell>

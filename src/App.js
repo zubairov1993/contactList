@@ -5,23 +5,14 @@ import Typography from "@material-ui/core/Typography";
 
 function App() {
   const [lists, setLists] = React.useState("");
-  // Получение локально через json-server,  файл в assets
+  // Получение из JSONplaceholder
   React.useEffect(() => {
-    axios.get("http://localhost:3001/lists").then(({ data }) => {
+    axios.get("http://jsonplaceholder.typicode.com/users").then(({ data }) => {
       setLists(data);
     });
   }, []);
 
-  // Получение локально через json-server,  файл в assets
-
-  // Получение локально через json-server,  файл в assets
-  React.useEffect(() => {
-    axios.get("http://localhost:3001/lists").then(({ data }) => {
-      setLists(data);
-    });
-  }, []);
-
-  // Получение локально через json-server,  файл в assets
+  // Получение из JSONplaceholder
 
   return (
     <div className="App">

@@ -13,11 +13,11 @@ import PersonAddIcon from "@material-ui/icons/PersonAdd";
 
 function AddContact({ items }) {
   const {
-    setValueSurName,
     setValueName,
-    setValuePatronymic,
     setValueEmail,
     setValuePhone,
+    setValueCity,
+    setValueCompany,
     visiblePopup,
     setVisiblePopup,
     addList,
@@ -83,29 +83,11 @@ function AddContact({ items }) {
         <div className={classes.popupAdd}>
           <FormControl className={classes.margin}>
             <TextField
-              label="Введите Фамилию"
-              id="outlined-size-small"
-              variant="outlined"
-              size="small"
-              onChange={(e) => setValueSurName(e.target.value)}
-            />
-          </FormControl>
-          <FormControl className={classes.margin}>
-            <TextField
               label="Введите Имя"
               id="outlined-size-small"
               variant="outlined"
               size="small"
               onChange={(e) => setValueName(e.target.value)}
-            />
-          </FormControl>
-          <FormControl className={classes.margin}>
-            <TextField
-              label="Введите отчество"
-              id="outlined-size-small"
-              variant="outlined"
-              size="small"
-              onChange={(e) => setValuePatronymic(e.target.value)}
             />
           </FormControl>
           <FormControl className={classes.margin}>
@@ -124,6 +106,24 @@ function AddContact({ items }) {
               variant="outlined"
               size="small"
               onChange={(e) => setValuePhone(e.target.value)}
+            />
+          </FormControl>
+          <FormControl className={classes.margin}>
+            <TextField
+              label="Введите Фамилию"
+              id="outlined-size-small"
+              variant="outlined"
+              size="small"
+              onChange={(e) => setValueCity(e.target.value)}
+            />
+          </FormControl>
+          <FormControl className={classes.margin}>
+            <TextField
+              label="Введите отчество"
+              id="outlined-size-small"
+              variant="outlined"
+              size="small"
+              onChange={(e) => setValueCompany(e.target.value)}
             />
           </FormControl>
           <IconButton
