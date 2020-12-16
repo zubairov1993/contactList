@@ -14,6 +14,15 @@ function App() {
 
   // Получение локально через json-server,  файл в assets
 
+  // Получение локально через json-server,  файл в assets
+  React.useEffect(() => {
+    axios.get("http://localhost:3001/lists").then(({ data }) => {
+      setLists(data);
+    });
+  }, []);
+
+  // Получение локально через json-server,  файл в assets
+
   return (
     <div className="App">
       <Typography variant="h3" align="center">
